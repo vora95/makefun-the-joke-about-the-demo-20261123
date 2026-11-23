@@ -13,6 +13,11 @@ OUT = "/output/entry.txt"
 
 
 def main() -> None:
+    code_points = len(JOKE)
+    if not 1 <= code_points <= 280:
+        raise ValueError(f"joke must be 1-280 code points, got {code_points}")
+    if "\n" in JOKE or "\r" in JOKE:
+        raise ValueError("joke must be a single line")
     os.makedirs("/output", exist_ok=True)
     with open(OUT, "w", encoding="utf-8", newline="") as f:
         f.write(JOKE)
